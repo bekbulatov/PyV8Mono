@@ -1,7 +1,7 @@
 # PyV8Mono
 
 PyV8Mono - python extension for [V8 MonoContext](https://github.com/fsitedev/v8monoctx) library.
-Commonly intended for rendering `fest` templates <https://github.com/mailru/fest>
+Commonly intended for rendering `fest` templates <https://github.com/mailru/fest>.
 
 # Install
 
@@ -10,11 +10,10 @@ Install v8monoctx shared library <https://github.com/fsitedev/v8monoctx>, don't 
 	$ export V8_VERSION=3.27.0
 	$ export V8_PREFIX=/usr/local/v8-$V8_VERSION
 
-Then install python module as usual:
+Then install python module as usually:
 
 	python setup.py build
 	sudo -E bash -c 'python setup.py install'
-
 
 # Usage
 
@@ -31,15 +30,15 @@ Then install python module as usual:
 
 # MonoContext options
 
-	GC control:
+Garbage collector control:
 
-	run_low_memory_notification. Options for running V8::LowMemoryNotification each N iterations. Disabled if 0 (default).
-	run_idle_notification_loop. Options for running V8::IdleNotification each N iterations. Disabled if 0 (default).
+- run_low_memory_notification. Options for running `V8::LowMemoryNotification` each N iterations. Disabled if 0 (default). `run_low_memory_notification = 100` will send notification each 100 renders.
+- run_idle_notification_loop. Options for running `V8::IdleNotification` each N iterations. Disabled if 0 (default).
 
-	V8 control:
+V8 control:
 
-	cmd_args. String of arguments for V8. Ex: '--no_incremental_marking', Default is ''
+- cmd_args. String of arguments for V8. Ex: `--no_incremental_marking`, Default is ''
 
-	Others:
+Others:
 
-	watch_templates. If set True, MonoContext will check whether templates change by modified date. Useful for development. Default is False
+- watch_templates. If set True, MonoContext will check whether templates change by modified date. Useful for development. Default is False
