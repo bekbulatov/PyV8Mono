@@ -1,17 +1,16 @@
-# Python binding PyV8Mono
+# PyV8Mono
 
-PyV8Mono - python extension for V8 MonoContext library <https://github.com/fsitedev/v8monoctx>.
+PyV8Mono - python extension for [V8 MonoContext](https://github.com/fsitedev/v8monoctx) library.
 Commonly intended for rendering `fest` templates <https://github.com/mailru/fest>
 
-# INSTALLATION
+# Install
 
-First of all install v8monoctx shared library <https://github.com/fsitedev/v8monoctx> and set 
-V8_VERSION and V8_PREFIX environment variables, e.g.
+Install v8monoctx shared library <https://github.com/fsitedev/v8monoctx>, don't forget `V8_VERSION` and `V8_PREFIX` environment variables, e.g.
 
 	$ export V8_VERSION=3.27.0
 	$ export V8_PREFIX=/usr/local/v8-$V8_VERSION
 
-To install this perl module type the following:
+Then install python module as usual:
 
 	python setup.py build
 	sudo -E bash -c 'python setup.py install'
