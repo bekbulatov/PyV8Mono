@@ -1,4 +1,4 @@
 *.pyc
 build/
 dist/
-monocontext.egg-info/
+PyV8Mono.egg-info/

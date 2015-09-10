@@ -21,6 +21,7 @@ class FestRenderer(object):
         self.renderer = MonoContext(**kwargs)
         self.js_root = js_root
         self.js_files = js_files
+        self.js_files_autoload = js_files_autoload
 
         if self.js_files_autoload:
             self.load_js_files()
