@@ -1,13 +1,13 @@
 #-*- coding: utf-8 -*-
 
-from monocontext import MonoContext, V8Error
+from PyV8Mono.monocontext import MonoContext, V8Error
 import unittest
 
 
-JS_FILE = 'data/js'
+JS_FILE = '../data/js'
 ABSENT_JS_FILE = '/tmp/nonexistent.js'
-JSON_FILE = 'data/json'
-ZERO_JS_FILE = 'data/zero_embed'
+JSON_FILE = '../data/json'
+ZERO_JS_FILE = '../data/zero_embed'
 
 
 class MonoContextTestCase(unittest.TestCase):

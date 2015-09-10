@@ -1,6 +1,6 @@
 # Python binding PyV8Mono
 
-MonoContext - python extension for V8 MonoContext library
+PyV8Mono - python extension for V8 MonoContext library <https://github.com/fsitedev/v8monoctx>.
 Commonly intended for rendering `fest` templates <https://github.com/mailru/fest>
 
 # INSTALLATION

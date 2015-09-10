@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 
-from monocontext import MonoContext
+from PyV8Mono.monocontext import MonoContext
 import logging
 import os.path
 
