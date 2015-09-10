@@ -5,7 +5,7 @@ Commonly intended for rendering `fest` templates <https://github.com/mailru/fest
 
 ## Install
 
-Install v8monoctx shared library <https://github.com/fsitedev/v8monoctx>, don't forget to set `V8_VERSION` and `V8_PREFIX` environment variables, e.g.
+Install v8monoctx shared library <https://github.com/fsitedev/v8monoctx>, don't forget to set `V8_PREFIX` environment variables, e.g.
 
 	$ export V8_VERSION=3.27.0
 	$ export V8_PREFIX=/usr/local/v8-$V8_VERSION
@@ -63,5 +63,4 @@ Be careful when you load common js utils in master process of your web server.
 
 	renderer = FestRenderer(js_root='/path/to/templates/', js_files=('build.js',), js_files_autoload=False)
 	json_str = json.dumps(context)
-	response, errors = renderer.execute_file("news-detail/news-detail.xml.js", append_str, json_str)
-	html = renderer.renderer("news-detail/news-detail.xml.js", json_str)
+	html = renderer.render('news-detail/news-detail.xml.js', json_str)
