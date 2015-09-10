@@ -1,0 +1,4 @@
+*.pyc
+build/
+dist/
+monocontext.egg-info/
