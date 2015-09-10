@@ -1,26 +1,27 @@
 # PyV8Mono
 
 PyV8Mono - python extension for [V8 MonoContext](https://github.com/fsitedev/v8monoctx) library.
-Commonly intended for rendering `fest` templates <https://github.com/mailru/fest>.
+Commonly intended for rendering [fest templates](<https://github.com/mailru/fest>).
 
 ## Install
 
-Install v8monoctx shared library <https://github.com/fsitedev/v8monoctx>, don't forget to set `V8_PREFIX` environment variables, e.g.
+Install v8monoctx following instructions on <https://github.com/fsitedev/v8monoctx>, don't forget to set `V8_PREFIX` environment variables, e.g.
 
 	$ export V8_VERSION=3.27.0
 	$ export V8_PREFIX=/usr/local/v8-$V8_VERSION
 
-Then install python module as usually:
+Then install python module as usual:
 
 	$ python setup.py build
 	$ sudo -E bash -c 'python setup.py install'
 
 ## MonoContext
 
-MonoContext is low-level wrapper. It contains 2 base methods:
+MonoContext is low-level wrapper. It contains 2 main methods:
 
-`load_file` for loading js helpers in V8
-`execute_file` for rendering template. It takes template name, suffix from calling template function and context is JSON format. MonoContext will compile template in V8.
+- `load_file` for loading js helpers in V8
+
+- `execute_file` for rendering template. It takes template name, suffix from calling template function and context is JSON format. MonoContext will compile template in V8.
 
 ### Usage
 
@@ -57,6 +58,7 @@ Others:
 
 FestRenderer uses MonoContext for more convinient using in your project.
 Usually you should have one instance on FestRenderer/MonoContext which stores templates in V8 memory.
+
 Be careful when you load common js utils in master process of your web server.
 
 	from PyV8Mono.renderer import FestRenderer
