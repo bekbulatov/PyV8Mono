@@ -17,18 +17,18 @@ Then install python module as usual:
 
 ## MonoContext
 
-MonoContext is low-level wrapper. It contains 2 main methods:
+MonoContext is low-level wrapper above v8monoctx. It contains 2 main methods:
 
-- `load_file` for loading js helpers in V8
+- `load_file` loads js helpers in V8.
 
-- `execute_file` for rendering template. It takes template name, suffix from calling template function and context is JSON format. MonoContext will compile template in V8.
+- `execute_file` renders template. It takes template name, suffix for calling template function and context in JSON format. MonoContext will compile template in V8, as `load_file` does.
 
 ### Usage
 
 	from PyV8Mono.monocontext import MonoContext
 	import json
 
-	renderer = MonoContext()
+	renderer = MonoContext(watch_templates=True)
 
 	# load common js helpers
 	renderer.load_file('context/build.js')
@@ -37,7 +37,6 @@ MonoContext is low-level wrapper. It contains 2 main methods:
 	append_str = ';fest["news-detail.xml"]( JSON.parse(__dataFetch()) );'
 	json_str = json.dumps(context)
 	html, errors = renderer.execute_file("news-detail/news-detail.xml.js", append_str, json_str)
-
 
 ### MonoContext init options
 
@@ -48,21 +47,24 @@ Garbage collector control:
 
 V8 control:
 
-- `cmd_args`. String of arguments for V8. Ex: `--no_incremental_marking`, Default is ''
+- `cmd_args`. String of arguments for V8. Ex: `--no_incremental_marking`, Default is ''.
 
-Others:
+Other:
 
-- `watch_templates`. If set True, MonoContext will check whether templates change by modified date. Useful for development. Default is False
+- `watch_templates`. If set True, MonoContext checks whether template has changed. Useful for development. Default is False.
 
 ## FestRenderer
 
-FestRenderer uses MonoContext for more convinient using in your project.
-Usually you should have one instance on FestRenderer/MonoContext which stores templates in V8 memory.
+FestRenderer provides more convinient use in your project than MonoContext.
 
-Be careful when you load common js utils in master process of your web server.
+Usually you should have one instance on FestRenderer/MonoContext which stores compiled templates in V8 memory. Also be careful if you load common js utils in master process of your web server, it may cause segfaults.
 
 	from PyV8Mono.renderer import FestRenderer
 
-	renderer = FestRenderer(js_root='/path/to/templates/', js_files=('build.js',), js_files_autoload=False)
+	renderer = FestRenderer(
+		js_root='/path/to/templates/',
+		js_files=('context/build.js',),
+		js_files_autoload=False
+	)
 	json_str = json.dumps(context)
 	html = renderer.render('news-detail/news-detail.xml.js', json_str)
