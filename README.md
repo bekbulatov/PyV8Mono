@@ -47,7 +47,7 @@ Garbage collector control:
 
 V8 control:
 
-- `cmd_args`. String of arguments for V8. Ex: `--no_incremental_marking`, Default is ''.
+- `cmd_args`. String of [arguments for V8](http://erikcorry.blogspot.ru/2012/11/memory-management-flags-in-v8.html). Ex: `--no_incremental_marking`, Default is ''.
 
 Other:
 
