@@ -65,7 +65,7 @@ static PyObject * PyAgent_execute_file(PyAgent *self, PyObject *args) {
 	std::string json_str = (std::string)json;
 	std::string out;
 
-	bool res = ExecuteFile(self->pCfg, fname, append, "", &json_str, &out);
+	bool res = ExecuteFile(self->pCfg, fname, append, &json_str, &out);
 	std::vector<std::string> err = GetErrors();
 	PyObject *ErrList = PyList_New(0);
 
@@ -98,7 +98,7 @@ static PyObject * PyAgent_load_file(PyAgent *self, PyObject *args) {
 		return NULL;
 	}
 
-	bool res = ExecuteFile(self->pCfg, fname, "", "", NULL, NULL);
+	bool res = ExecuteFile(self->pCfg, fname, "", NULL, NULL);
 	std::vector<std::string> err = GetErrors();
 	PyObject *ErrList = PyList_New(0);
 
@@ -149,7 +149,7 @@ static PyObject* PyAgent_heap_stat(PyAgent* self) {
 static PyMethodDef PyAgent_methods[] =
 {
 	{ "execute_file", (PyCFunction)PyAgent_execute_file, METH_VARARGS, "Execute file" },
-	{ "load_file", (PyCFunction)PyAgent_load_file, METH_VARARGS, "Execute file" },
+	{ "load_file", (PyCFunction)PyAgent_load_file, METH_VARARGS, "Load file" },
 	{ "counters", (PyCFunction)PyAgent_counters, METH_VARARGS, "Get counters" },
 	{ "heap_stat", (PyCFunction)PyAgent_heap_stat, METH_VARARGS, "Get heap statistic" },
 	{ NULL, NULL, 0, NULL }  /* Sentinel */
