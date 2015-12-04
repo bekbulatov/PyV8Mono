@@ -98,7 +98,7 @@ static PyObject * PyAgent_load_file(PyAgent *self, PyObject *args) {
 		return NULL;
 	}
 
-	bool res = ExecuteFile(self->pCfg, fname, "", NULL, NULL);
+	bool res = LoadFile(self->pCfg, fname);
 	std::vector<std::string> err = GetErrors();
 	PyObject *ErrList = PyList_New(0);
 
