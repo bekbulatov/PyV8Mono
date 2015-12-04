@@ -9,6 +9,7 @@ bin_path = os.path.abspath(os.path.dirname(__file__))
 
 JS_FILE = os.path.join(bin_path, '../data/tpl.js')
 ZERO_JS_FILE = os.path.join(bin_path, '../data/zero.js')
+ERROR_JS_FILE = os.path.join(bin_path, '../data/error.js')
 ABSENT_JS_FILE = '/tmp/nonexistent.js'
 
 JSON_FILE = os.path.join(bin_path, '../data/data.json')
@@ -25,7 +26,10 @@ class MonoContextTestCase(unittest.TestCase):
         renderer = MonoContext()
         self.assertEqual([], renderer.load_file(JS_FILE))
 
-        # No existent error file
+        # Load file with js error
+        self.assertRaises(V8Error, renderer.load_file, ERROR_JS_FILE)
+
+        # Load absent file
         self.assertRaises(V8Error, renderer.load_file, ABSENT_JS_FILE)
 
     def test_execute_file(self):
@@ -36,7 +40,7 @@ class MonoContextTestCase(unittest.TestCase):
         self.assertEqual(0, len(out))
 
         # Execute file with append
-        out, errors = renderer.execute_file(JS_FILE, ';fest["top.xml"]( JSON.parse(__dataFetch()) );', '{}')  # TODO: передавать пустую строку вместо json
+        out, errors = renderer.execute_file(JS_FILE, ';fest["top.xml"]( JSON.parse(__dataFetch()) );', '{}')
         self.assertEqual(31478, len(out))
 
         # Execute file with append and json
@@ -55,7 +59,10 @@ class MonoContextTestCase(unittest.TestCase):
         out, errors = renderer.execute_file(ZERO_JS_FILE, '', '')
         self.assertEqual(11, len(out))
 
-        # No existent error file
+        # Execute file with js error
+        self.assertRaises(V8Error, renderer.execute_file, ERROR_JS_FILE, '', '')
+
+        # Execute absent file
         self.assertRaises(V8Error, renderer.execute_file, ABSENT_JS_FILE, ';fest["top.xml"]( JSON.parse(__dataFetch()) );', self.json_str)
 
         # Catch warn message from __errorLog
