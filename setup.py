@@ -14,7 +14,7 @@ V8_INCLUDE_DIR = os.path.join(V8_PREFIX, 'include/')
 setup(
     name='PyV8Mono',
     description='Python binding for V8 MonoContext library',
-    version='1.0',
+    version='1.1',
     author='Bekbulatov Alexander',
     author_email='alexander@bekbulatov.ru',
     url='https://github.com/bekbulatov/PyV8Mono',
